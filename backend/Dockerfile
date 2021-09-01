@@ -10,7 +10,8 @@ RUN poetry install
 
 COPY . .
 
+RUN mkdir /data
+ENV DATABASE_DIR=/data
+
 ENTRYPOINT [ "python", "manage.py" ]
 CMD ["runserver", "0.0.0.0:8000"]
-
-ENV DATABASE_DIR=/data

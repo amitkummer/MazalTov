@@ -7,4 +7,4 @@ class DateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Date
-        fields = ['id', 'name', 'birthday', 'owner']
+        fields = ['id', 'name', 'birthday', 'owner', 'avatar']

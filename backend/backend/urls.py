@@ -18,6 +18,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
 from birthdays import views
+from images.views import imageAuth
 
 router = DefaultRouter()
 router.register(r'dates', views.DateViewSet)
@@ -26,5 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
+    path('api/auth/image', imageAuth),
     path('api/', include(router.urls)),
 ]

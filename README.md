@@ -18,3 +18,7 @@ To delete the cluster:
 ```s
 $ k3d cluster delete birthdays
 ```
+
+```
+foo:3UizLd!C
+```

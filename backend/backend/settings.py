@@ -46,7 +46,7 @@ SECRET_KEY = 'django-insecure-281-@%x%&&0ai%r2#%=eqq9ys^$amso1kotjbuh5jx##^ds-%o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'birthdays.apps.BirthdaysConfig',
+    'images.apps.ImagesConfig',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -158,4 +160,10 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
+}
+
+MEDIA_ROOT = '/data/nginx-static/api/images/'
+
+DJOSER = {
+    'SET_PASSWORD_RETYPE': True
 }
