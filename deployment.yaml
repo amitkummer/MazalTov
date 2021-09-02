@@ -62,7 +62,7 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 8Gi
+      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -103,6 +103,82 @@ spec:
         port: 80
         targetPort: http
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-images
+data:
+  nginx.conf: |
+    events {}
+
+    http {
+        server {
+            listen 80;
+
+            location /api/images/ {
+                auth_request /api/auth;
+
+                root /data/nginx-static;
+            }
+
+            location = /api/auth {
+                proxy_pass http://backend/api/auth/image;
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+                proxy_set_header X-Original-URI $request_uri;
+            }
+        }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-images
+spec:
+  selector:
+    matchLabels:
+      app: nginx-images
+  template:
+    metadata:
+      labels:
+        app: nginx-images
+    spec:
+      containers:
+        - name: nginx-images
+          image: nginx:1.21.1-alpine
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: images
+              mountPath: /data
+            - name: config
+              mountPath: /etc/nginx
+      volumes:
+        - name: images
+          persistentVolumeClaim:
+            claimName: backend-data
+        - name: config
+          configMap:
+            name: nginx-images
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: images
+spec:
+  selector:
+    app: nginx-images
+  ports:
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: http
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -123,5 +199,12 @@ spec:
         backend:
           service:
             name: backend
+            port:
+              name: http
+      - path: /api/images
+        pathType: Prefix
+        backend:
+          service:
+            name: images
             port:
               name: http

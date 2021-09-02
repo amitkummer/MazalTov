@@ -62,9 +62,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
-    '@nuxtjs/proxy',
   ],
-  proxy: ['http://localhost:8001/api/images'],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
