@@ -162,7 +162,7 @@ SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('JWT',),
 }
 
-MEDIA_ROOT = '/data/nginx-static/api/images/'
+MEDIA_ROOT = '/data/nginx-static'
 
 DJOSER = {
     'SET_PASSWORD_RETYPE': True

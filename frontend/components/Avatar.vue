@@ -31,14 +31,15 @@ export default {
     }
     let data
     if (this.image.type === 'url') {
-      const url = this.image.value.replace(
-        'http://localhost:3080',
-        '/api/images'
-      )
-      const response = await this.$axios.get(url, {
-        responseType: 'arraybuffer',
-      })
-      data = response.data
+      const url = `/${this.image.value}`
+      try {
+        const response = await this.$axios.get(url, {
+          responseType: 'arraybuffer',
+        })
+        data = response.data
+      } catch (e) {
+        console.log(e)
+      }
     } else if (this.image.type === 'file') {
       data = await this.image.value.arrayBuffer()
     }

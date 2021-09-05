@@ -3,7 +3,7 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 def userAvatarDirectory(instance, filename):
-    return f'{ instance.owner.id }/{ filename }'
+    return f'images/{ instance.owner.id }/{ filename }'
 
 class Date(models.Model):
     name = models.CharField(max_length=100)

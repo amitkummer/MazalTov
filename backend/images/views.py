@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_401_UNAUTHORIZED, HTTP_200_OK
 
-imageId = compile(r'^/api/images/(\d+)/')
+imageId = compile(r'^/images/(\d+)/')
 
 @api_view()
 def imageAuth(request):

@@ -2,7 +2,8 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   server: {
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    port: 80
   },
   /*
    ** Nuxt rendering mode
@@ -62,7 +63,12 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
+    '@nuxtjs/proxy',
   ],
+  proxy: {
+    '/images': 'http://images',
+    '/api': 'http://backend'
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

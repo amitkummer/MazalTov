@@ -88,7 +88,7 @@ spec:
               cpu: 500m
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -115,7 +115,7 @@ data:
         server {
             listen 80;
 
-            location /api/images/ {
+            location /images/ {
                 auth_request /api/auth;
 
                 root /data/nginx-static;
@@ -201,7 +201,7 @@ spec:
             name: backend
             port:
               name: http
-      - path: /api/images
+      - path: /images
         pathType: Prefix
         backend:
           service:
