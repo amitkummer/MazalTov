@@ -3,6 +3,7 @@ docker_build('backend-image', 'backend',
         sync('backend', '/backend')
     ])
 docker_build('frontend-image', 'frontend',
+    dockerfile="frontend/docker-images/development",
     live_update=[
         sync('frontend', '/frontend')
     ])
