@@ -1,4 +1,5 @@
 docker_build('backend-image', 'backend',
+    dockerfile="backend/docker-images/development",
     live_update=[
         sync('backend', '/backend')
     ])
