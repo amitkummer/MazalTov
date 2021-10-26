@@ -1,12 +1,15 @@
-docker_build('backend-image', 'backend',
+docker_build('backend-image:dev', 'backend',
     dockerfile="backend/docker-images/development",
     live_update=[
         sync('backend', '/backend')
     ])
-docker_build('frontend-image', 'frontend',
+docker_build('frontend-image:dev', 'frontend',
     target='build',
     entrypoint=['npm', 'run', 'dev'],
     live_update=[
         sync('frontend', '/frontend')
     ])
-k8s_yaml('deployment.yaml')
+yaml = helm(
+    './charts/birthday-calendar',
+    set=['images.frontend.repository=frontend-image', 'images.frontend.tag=dev'])
+k8s_yaml(yaml)
