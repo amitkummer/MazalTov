@@ -24,8 +24,25 @@ frontend:
     port: 80
     name: frontend
 
+backend:
+  deployment:
+    podAnnotations: {}
+    imagePullSecrets: []
+    resources: {}
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+  service:
+    port: 80
+    name: backend
+
 images:
   frontend:
+    repository: docker.kummer.local/amit/birthday-calendar
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+  backend:
     repository: docker.kummer.local/amit/birthday-calendar
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.

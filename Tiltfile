@@ -11,5 +11,6 @@ docker_build('frontend-image:dev', 'frontend',
     ])
 yaml = helm(
     './charts/birthday-calendar',
-    set=['images.frontend.repository=frontend-image', 'images.frontend.tag=dev'])
+    set=['images.frontend.repository=frontend-image', 'images.frontend.tag=dev',
+         'images.backend.repository=backend-image', 'images.backend.tag=dev'])
 k8s_yaml(yaml)
