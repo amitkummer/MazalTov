@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-images
+spec:
+  selector:
+    matchLabels:
+      app: nginx-images
+  template:
+    metadata:
+      labels:
+        app: nginx-images
+    spec:
+      containers:
+        - name: nginx-images
+          image: nginx:1.21.1-alpine
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: http
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 30
+            periodSeconds: 10
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: images
+              mountPath: /data
+            - name: config
+              mountPath: /etc/nginx
+      volumes:
+        - name: images
+          persistentVolumeClaim:
+            claimName: backend-data
+        - name: config
+          configMap:
+            name: nginx-images

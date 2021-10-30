@@ -1,8 +1,8 @@
 ## Prerequisites
 
-Make sure to have K3d and Tilt installed.
+Make sure to have Helm, K3d and Tilt installed.
 
-K3d version `v4.1.0` and Tilt version `v0.22.3` were used when configuring this repository.
+H3lm version `v3.7.1`, K3d version `v4.1.0` and Tilt version `v0.22.3` were used when configuring this repository.
 
 ## Development
 
