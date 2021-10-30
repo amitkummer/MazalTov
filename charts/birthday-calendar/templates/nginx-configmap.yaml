@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-images
+data:
+  nginx.conf: |
+    events {}
+
+    http {
+        server {
+            listen 80;
+
+            location /images/ {
+                auth_request /api/auth;
+
+                root /data/nginx-static;
+            }
+
+            location = /api/auth {
+                proxy_pass http://backend/api/auth/image;
+                proxy_pass_request_body off;
+                proxy_set_header Content-Length "";
+                proxy_set_header X-Original-URI $request_uri;
+            }
+
+            location /health {
+              return 200 "healthy\n";
+            }
+        }
+    }
