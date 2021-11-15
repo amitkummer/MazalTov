@@ -3,5 +3,5 @@ kind: Secret
 metadata:
   name: backend
 type: Opaque
-data:
-  key: c2VjcmV0
+string-data:
+  key: {{ .Values.backend.key }}

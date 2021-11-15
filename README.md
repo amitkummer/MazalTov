@@ -22,3 +22,9 @@ $ k3d cluster delete birthdays
 ```
 foo:3UizLd!C
 ```
+
+## Deployment
+
+In `values.yaml` in the project root edit the required values such as:
+
+1. `backend.key` will be used as Django's secret key. Should be base64 encoded.
