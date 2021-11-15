@@ -14,5 +14,5 @@ RUN mkdir /data
 ENV DATABASE_DIR=/data
 ENV DEBUG=false
 
-ENTRYPOINT [ "python", "manage.py" ]
-CMD ["runserver", "0.0.0.0:8000"]
+ENTRYPOINT [ "gunicorn", "backend.wsgi" ]
+CMD ["--bind", "0.0.0.0:8000"]

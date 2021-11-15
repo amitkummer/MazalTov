@@ -59,6 +59,7 @@ spec:
       initContainers:
         - name: db-migration
           image: "{{ .Values.images.backend.repository }}:{{ .Values.images.backend.tag | default .Chart.AppVersion }}"
+          command: ["python", "manage.py"]
           args:
             - migrate
           env:
