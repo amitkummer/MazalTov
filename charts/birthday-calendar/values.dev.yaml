@@ -1,0 +1,14 @@
+images:
+  frontend:
+    repository: frontend-image
+    tag: dev
+  backend:
+    repository: backend-image
+    tag: dev
+
+ingress:
+  hosts:
+    - paths:
+        - path: /
+          pathType: Prefix
+          serviceName: frontend
