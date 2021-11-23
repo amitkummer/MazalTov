@@ -35,7 +35,7 @@ backend:
   service:
     port: 80
     name: backend
-  key: "override this in production to be an actual secret key"
+  key: "b3ZlcnJpZGUgdGhpcyBpbiBwcm9kdWN0aW9u"
 
 images:
   frontend:
