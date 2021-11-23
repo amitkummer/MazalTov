@@ -39,12 +39,12 @@ backend:
 
 images:
   frontend:
-    repository: docker.kummer.local/amit/birthday-calendar
+    repository: docker.kummer.local/birthday-calendar/birthday-calendar-tilt/frontend
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
   backend:
-    repository: docker.kummer.local/amit/birthday-calendar
+    repository: docker.kummer.local/birthday-calendar/birthday-calendar-tilt/backend
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
