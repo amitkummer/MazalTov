@@ -37,8 +37,7 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.ingress.hosts }}
-    # - host: {{ .host | quote }}
-    -  http:
+    - http:
         paths:
           {{- range .paths }}
           - path: {{ .path }}
@@ -49,5 +48,8 @@ spec:
                 port:
                   name: http
           {{- end }}
+      {{- with .host }}
+      host: {{ . | quote }}
+      {{- end }}
     {{- end }}
 {{- end }}

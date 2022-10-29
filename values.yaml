@@ -1,2 +1,8 @@
 backend:
-  key: ""
+  key: "VjNpdTkkeU8keDM4"
+
+images:
+  frontend:
+    tag: 0.0.4
+  backend:
+    tag: 0.0.4
