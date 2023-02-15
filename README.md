@@ -2,13 +2,15 @@
 
 Mazal Tov is a self hosted web application for keeping track of people's birthdays.
 
+![home-page](readme-images/home.png)
+
 Noteable features:
 
+- `Vue` Frontend Server Side Rendering (natively powered by `Nuxt2`).
+- `Helm` chart included for streamlined deployment.
 - Slick web interface with a list display of all stored birthdays (powered by `Vuetify`).
-- Customizeable `Helm` chart for streamlined deployment.
 - Avatar display for each birthday (powered by `Django ImageKit`).
 - Multiple users support (powered by JWT auth using `Djoser`).
-- `Vue` Frontend Server Side Rendering (natively powered by `Nuxt2`).
 
 
 ## Self Hosting
